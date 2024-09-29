@@ -10,7 +10,11 @@ class dataFetcher:
         self.inputLeftIndicatorOn = True
         self.inputRightIndicatorOn = False
         self.hazardsOn = True
+        if self.inputSpeed > 100:
+            self.hazardsOn = False
         self.battDrain = '100'
+        if self.inputSpeed > 10:
+            self.battDrain = '10'
         self.solarPower = '20'
         self.updatingTextValues= ['100', '20', '1', 'NO COMMS','NO COMMS','NO COMMS','NO COMMS','NO COMMS',
                                   'NO COMMS','NO COMMS','NO COMMS']

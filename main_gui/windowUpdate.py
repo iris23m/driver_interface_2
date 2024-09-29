@@ -22,7 +22,7 @@ class window_update:
         self.driveMode = driveMode
         self.arrow_update()
         self.speed_update()
-        #self.warning_lights_update()
+        self.warning_lights_update()
         self.text_update()
         self.drive_mode_update()
 
@@ -33,9 +33,12 @@ class window_update:
     def speed_update(self):
         self.speedObject.attach_values(self.speedValue)
 
-   # def warning_lights_update(self):
-    #    if self.hazardOn:
-     #       self.hazardLight.attach_image()
+    def warning_lights_update(self):
+        if self.hazardOn:
+            self.hazardLight.attach_image()
+           
+        else: 
+            self.hazardLight.refresh()
 
     def text_update(self):
         for i in range(len(self.updatableTextObjectsList)):

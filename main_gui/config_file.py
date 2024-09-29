@@ -9,6 +9,7 @@ class configuration:
         self.ROWS = 12
         self.COLUMNS = 8
         #key needs to have a space between , and 2nd number to work
+        #this is all the specially sized grid cells
         self.SPANS = {'[1, 0]':[4,6], '[0, 3]':[1,2], '[4, 0]':[1,2], 
          '[5, 0]':[1,2], '[6, 0]':[1,2],'[7, 0]':[1,2],'[8, 0]':[1,2],
          '[9, 0]':[1,2], '[10, 0]':[1,2], '[4, 4]':[1,2],'[5, 4]':[1,2], '[6, 4]':[1,2],

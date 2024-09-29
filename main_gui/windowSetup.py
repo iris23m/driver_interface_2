@@ -14,35 +14,37 @@ class window_setup:
     
     'sets up the window, creates all the objects, creates the window updater from the windows_update class that can be used later'
     def __init__(self):
+        pygame.display.init()
 
-        #this is to set up pygame in the linux framebuffer
-        # Based on "Python GUI in Linux frame buffer"
-        # http://www.karoltomala.com/blog/?p=679
-        disp_no = os.getenv("DISPLAY")
-        if disp_no:
-            print("I'm running under X display = {0}".format(disp_no))
-        
-        # Check which frame buffer drivers are available
-        # Start with fbcon since directfb hangs with composite output
-        drivers = ['fbcon', 'directfb', 'svgalib']
-        found = False
-        for driver in drivers:
-            # Make sure that SDL_VIDEODRIVER is set
-            if not os.getenv('SDL_VIDEODRIVER'):
-                os.putenv('SDL_VIDEODRIVER', driver)
-            try:
-                pygame.display.init()
-            except pygame.error:
-                print('Driver: {0} failed.'.format(driver))
-                continue
-            found = True
-            break
+ #       #this is to set up pygame in the linux framebuffer
+ #       # Based on "Python GUI in Linux frame buffer"
+ #       # http://www.karoltomala.com/blog/?p=679
+ #       disp_no = os.getenv("DISPLAY")
+ #       if disp_no:
+ #           print("I'm running under X display = {0}".format(disp_no))
+ #       
+ #       # Check which frame buffer drivers are available
+ #       # Start with fbcon since directfb hangs with composite output
+ #       drivers = ['fbcon', 'directfb', 'svgalib']
+ #       found = False
+ #       for driver in drivers:
+ #          # Make sure that SDL_VIDEODRIVER is set
+ #           if not os.getenv('SDL_VIDEODRIVER'):
+ #               os.putenv('SDL_VIDEODRIVER', driver)
+ #           try:
+ #               pygame.display.init()
+ #           except pygame.error:
+ #               print('Driver: {0} failed.'.format(driver))
+ #               continue
+ #           found = True
+ #           break
 
 
         pygame.init()
         config_values = configuration()#still need for grid!
         
         self.window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        #self.window = pygame.display.set_mode((200, 200))
         self.windowWidth = self.window.get_width()
         self.windowHeight = self.window.get_height()
         geo = str(config_values.WINDOW_WIDTH) + 'x' + str(config_values.WINDOW_HEIGHT)
