@@ -16,7 +16,7 @@ class dataFetcher:
         if self.inputSpeed > 10:
             self.battDrain = '10'
         self.solarPower = '20'
-        self.updatingTextValues= ['100', '20', '1', 'NO COMMS','NO COMMS','NO COMMS','NO COMMS','NO COMMS',
+        self.updatingTextValues= ['100', '20', '1', 'NO COMMS','NO COMMS','NO COMMS','D', 'A','NO COMMS',
                                   'NO COMMS','NO COMMS','NO COMMS']
         self.driveMode = 'N'
         if self.counter > 10:

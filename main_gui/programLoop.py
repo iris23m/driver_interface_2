@@ -12,7 +12,7 @@ class program_loop:
         self.dataFetcher.return_data()
         self.windowSetup.windowUpdater.general_update(self.dataFetcher.inputSpeed, self.dataFetcher.inputLeftIndicatorOn,
                                                        self.dataFetcher.inputRightIndicatorOn, self.dataFetcher.hazardsOn,
-                                                         self.dataFetcher.updatingTextValues, self.dataFetcher.driveMode)
+                                                         self.dataFetcher.updatingTextValues)
         
         #self.master.after(500, self.update2)
     def leftFlash(self):

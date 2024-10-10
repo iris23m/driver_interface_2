@@ -64,9 +64,10 @@ class window_setup:
         self.create_busVolts()
         self.create_bmuStatus()
         self.create_motorStatuses()
-        self.create_ivtStatuses()
+        #self.create_ivtStatuses()
         self.create_mpptStatuses()
         self.create_driveMode()
+        self.create_driveGear()
         self.create_warning_lights()
         self.update_window()
 
@@ -77,11 +78,11 @@ class window_setup:
      
     def create_right_arrow(self):
         rightArrowDirection = 'right'
-        rightArrowCanvas = self.grid.canvaslist[0][6]
+        rightArrowCanvas = self.grid.canvaslist[0][8]
         self.rightArrow = arrow(self.window, rightArrowDirection, rightArrowCanvas, self.gridWidth, self.gridHeight,1.5)
 
     def create_speed(self):
-        self.speedObject = attach_speed(self.window, [1,0], self.grid, self.windowWidth, self.windowHeight)
+        self.speedObject = attach_speed(self.window, [1, 2], self.grid, self.windowWidth, self.windowHeight)
     
     def create_text_object(self, text, position, displayNow = True):
         textObject = text_manager(self.window, position, self.grid, self.windowWidth, self.windowHeight)
@@ -107,41 +108,36 @@ class window_setup:
         self.busVoltsValueText = self.create_text_object(None, [7,1], False) 
 
     def create_bmuStatus(self):
-        self.bmuStatusText = self.create_text_object('BMU: ', [8, 0])
-        self.bmuStatusValueText = self.create_text_object(None, [8, 1], False)
+        self.bmuStatusText = self.create_text_object('BMU: ', [5, 4])
+        self.bmuStatusValueText = self.create_text_object(None, [5, 5], False)
 
     def create_motorStatuses(self):
-        self.LMotorStatusText = self.create_text_object('L Motor: ', [8, 3])
-        self.LMotorStatusValueText = self.create_text_object(None, [8, 4], False)
+        self.LMotorStatusText = self.create_text_object('L Motor: ', [6, 4])
+        self.LMotorStatusValueText = self.create_text_object(None, [6, 5], False)
     
-        self.RMotorStatusText = self.create_text_object('R Motor: ', [9, 3])
-        self.RMotorStatusValueText = self.create_text_object(None, [9, 4], False)
-
-    def create_ivtStatuses(self):
-        self.ivtFrontStatusText = self.create_text_object('IVT Front: ', [9, 0])
-        self.ivtFrontStatusValueText = self.create_text_object(None, [9, 1], False)
-
-        self.ivtRearStatusText = self.create_text_object('IVT Rear: ', [10, 0])
-        self.ivtRearStatusValueText = self.create_text_object(None, [10, 1], False)
+        self.RMotorStatusText = self.create_text_object('R Motor: ', [7, 4])
+        self.RMotorStatusValueText = self.create_text_object(None, [7, 5], False)
 
     def create_mpptStatuses(self):
             
-        self.mppt1StatusText = self.create_text_object('MPPT1: ', [5, 3])
-        self.mppt1StatusValueText = self.create_text_object(None, [5, 4], False)
-    
-        self.mppt2StatusText = self.create_text_object('MPPT2: ', [6, 3])
-        self.mppt2StatusValueText = self.create_text_object(None, [6, 4], False)
-    
-        self.mppt3StatusText = self.create_text_object('MPPT3: ', [7, 3])
-        self.mppt3StatusValueText = self.create_text_object(None, [7, 4], False)
+        self.mpptStatusText = self.create_text_object('MPPTs: ', [8, 4])
+        self.mppt1StatusValueText = self.create_text_object(None, [8, 5], False)
 
     def create_driveMode(self):
-        self.DdriveModeObject = text_manager(self.window, [11, 2], self.grid, self.windowWidth, self.windowHeight)
-        self.NdriveModeObject = text_manager(self.window, [11, 3], self.grid, self.windowWidth, self.windowHeight)  
-        self.RdriveModeObject = text_manager(self.window, [11, 4], self.grid, self.windowWidth, self.windowHeight)           
+        self.driveModeText = self.create_text_object('Mode: ', [9, 0]) 
+        self.driveModeValue = self.create_text_object(None, [9, 1], False)
+
+        #self.DdriveModeObject = text_manager(self.window, [11, 2], self.grid, self.windowWidth, self.windowHeight)
+        #self.NdriveModeObject = text_manager(self.window, [11, 3], self.grid, self.windowWidth, self.windowHeight)  
+        #self.RdriveModeObject = text_manager(self.window, [11, 4], self.grid, self.windowWidth, self.windowHeight)           
+
+    def create_driveGear(self):
+        self.driveGearText = self.create_text_object('Gear: ', [9, 3]) 
+        self.driveGearValue = self.create_text_object(None, [9, 4], False) 
+
 
     def create_warning_lights(self):
-        self.hazardLight = display_image(self.window, "hazard_light.png" , [0,3], self.grid, [25,25], self.windowWidth, self.windowHeight)
+        self.hazardLight = display_image(self.window, "hazard_light.png" , [0,4], self.grid, [25,25], self.windowWidth, self.windowHeight)
 
     def update_window(self):
-        self.windowUpdater = window_update(self.window, self.speedObject, self.leftArrow, self.rightArrow,self.hazardLight, self.updatableTextObjectsList, self.DdriveModeObject, self.NdriveModeObject, self.RdriveModeObject)
+        self.windowUpdater = window_update(self.window, self.speedObject, self.leftArrow, self.rightArrow,self.hazardLight, self.updatableTextObjectsList)
